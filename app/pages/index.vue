@@ -28,7 +28,7 @@ const reversedItems = computed(() => [...items.value].reverse());
     <button @click="addItem">Добавить</button>
    <section v-for="item in reversedItems" :key="item">
 
-    <h2>hello {{ item}}</h2>
+    <h2>hello {{ item }}</h2>
   
   </section>
   </div>
