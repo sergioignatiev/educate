@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
-const items = ref<any[]>([]);
+import {nanoid} from 'nanoid'
+import {type User} from '@/interfaces/user'
+const items = ref<User[]>([]);
 
 const fetchItems = async () => {
   items.value = await $fetch('/api/items/get');
@@ -10,7 +11,7 @@ const fetchItems = async () => {
 const addItem = async () => {
   await $fetch('/api/items/post', {
     method: 'POST',
-    body: { name: name.value, description: 'Hello',title:"?path",price:'5'},
+    body: {id:nanoid(), name: name.value, description: 'Hello',title:"?path",price:'5'},
   });
   name.value=''
   fetchItems();
@@ -24,11 +25,11 @@ const reversedItems = computed(() => [...items.value].reverse());
 
 <template>
   <div>
-    <input type="text" v-model="name">
-    <button @click="addItem">Добавить</button>
-   <section v-for="item in reversedItems" :key="item">
+    <input type="text" class="bg-slate-100" v-model="name">
+    <button @click="addItem" class="bg-blue-700 px-4 py-1 text-white rounded-sm">ADD</button>
+   <section v-for="item in reversedItems" :key="item.id">
 
-    <h2 v-if="item">hello {{ item }}</h2>
+    <p v-if="item"> {{ item }}</p>
   <h1 v-else>loading</h1>
   </section>
   </div>

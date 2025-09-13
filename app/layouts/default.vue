@@ -1,14 +1,6 @@
 <template>
   <div>
-    <h1>DEFAULT</h1>
-    <slot/>
+    <AppNavbar/>
+    <slot />
   </div>
 </template>
-
-<script lang="ts" setup>
-
-</script>
-
-<style>
-
-</style>
