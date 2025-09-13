@@ -1,3 +1,4 @@
+import {type User} from '@/interfaces/user'
 export default defineEventHandler(async () => {
   const url = (process.env.UPSTASH_REST_URL as string) + '/get/items';
   const token = process.env.UPSTASH_REST_TOKEN as string;

@@ -5,7 +5,5 @@ export default defineNuxtConfig({
    css: [
     // локальные файлы
     '~/assets/css/main.css'],
-  modules: [
-    '@unocss/nuxt',
-  ],
+  modules: ['@unocss/nuxt', '@pinia/nuxt'],
 })
