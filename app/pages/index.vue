@@ -23,7 +23,7 @@ const reversedItems = computed(() => [...items.value].reverse());
    
    <section class="bg-blue-200 p-2 rounded-sm" v-if="items.length>0" v-for="item in reversedItems" :key="item.id">
 
-    <h2>hello {{ item.name }}</h2>
+    <h2>hello {{ item.name }} {{ item.price }}</h2>
     <p>{{ item.description }}</p>
     <p>{{ item.title }}</p>
   

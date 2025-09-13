@@ -11,7 +11,7 @@ const fetchItems = async () => {
 const addItem = async () => {
   await $fetch('/api/items/post', {
     method: 'POST',
-    body: {id:nanoid(), name: name.value, description: 'Hello',title:"?path",price:'5'},
+    body: {id:nanoid(), name: name.value, description: 'Hello',title:"?path",price:7,info:"RECEIVE"},
   });
   name.value=''
   fetchItems();

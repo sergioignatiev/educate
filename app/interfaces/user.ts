@@ -3,5 +3,6 @@ export type User={
     name:string,
     description:string,
     title:string,
-    price:string|number
+    price:string|number,
+    info?:string
 }
