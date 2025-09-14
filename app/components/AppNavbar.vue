@@ -1,5 +1,5 @@
 <template>
- <nav class="h-16 bg-slate-300">
+ <nav class=" bg-slate-300">
     <ul>
         <li v-for="nav in navigation" :key="nav.id">
             <NuxtLink :to="nav.path">{{ nav.label }}</NuxtLink>
@@ -11,7 +11,8 @@
 <script lang="ts" setup>
 const navigation = [
   {id:1, path:'/', label:'Home'},
-  {id:2, path:'/host', label:'Host'}
+  {id:2, path:'/products', label:'Products'},
+  {id:3,path:'/admin',label:"Admin"}
 ]
 
 </script>

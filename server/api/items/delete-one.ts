@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const query = getQuery(event); // например ?name=Test
-  const nameToDelete = query.name as string;
+  const nameToDelete = query.id as string;
 
   const urlGet = (process.env.UPSTASH_REST_URL as string) + '/get/items';
   const urlSet = (process.env.UPSTASH_REST_URL as string) + '/set/items';
@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // Удаляем объект с нужным name
-  const filtered = itemsArray.filter(item => item.name !== nameToDelete);
+  const filtered = itemsArray.filter(item => item.id !== nameToDelete);
 
   // Сохраняем обратно
   await fetch(urlSet, {
