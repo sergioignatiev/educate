@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { nanoid } from 'nanoid'
-import { useCounterStore } from '../stores/host'
+import { useCounterStore } from '#imports'
 import { storeToRefs } from 'pinia'
 
 const store = useCounterStore()

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1><nuxt-page/></h1>
     <section v-if="data.length" class="flex flex-wrap gap-4 p-4">
       <nuxt-link v-for="item in data" :key="item.id" :to="`/products/${item.id}`" class="p-4 bg-blue-100 rounded-md flex flex-col items-center gap-2">
         <img class="w-[100px] " :src="item.image" :alt="item.title" />
