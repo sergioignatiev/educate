@@ -27,6 +27,6 @@ export const useCounterStore = defineStore('host', () => {
     await $fetch('/api/items/delete', { method: 'DELETE' })
     await fetchItems()
   }
-
-  return { data, fetchItems, addItem, deleteItem, clearItems }
+const reversedItems = computed(() => [...data.value].reverse())
+  return { data, fetchItems, addItem, deleteItem, clearItems,reversedItems }
 })
