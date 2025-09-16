@@ -1,6 +1,6 @@
 <template>
   <div class="p-10">
-    <NuxtLink to="/products" class="text-blue-600 hover:underline mb-8 inline-block">← К списку продуктов</NuxtLink>
+    <NuxtLink to="/products" class="text-black hover:underline mb-8 inline-block">← К списку продуктов</NuxtLink>
     
     <section v-if="item" class="flex flex-col md:flex-row gap-8">
       
@@ -63,18 +63,14 @@ onMounted(async () => {
     await store.fetchItems()
   }
 })
+useSeoMeta({
+  title:`BALD-E | ${item.value?.title ||""}`,
+  
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+  ogImage: 'https://example.com/image.png',
+  twitterCard: 'summary_large_image',
+})
 </script>
 
-<style scoped>
-/* Дополнительные стили, если необходимы */
-</style>
 
----
-
-### **Что было изменено**
-
-Я внес следующие ключевые изменения в элемент `<img>`:
-
-* **`max-h-[80vh]`**: Этот класс устанавливает **максимальную высоту** изображения на 80% от высоты области просмотра. Это гарантирует, что изображение не будет слишком большим и всегда поместится на экране, даже если его исходное разрешение очень высокое. `vh` (viewport height) — это CSS-единица, равная 1% от высоты окна браузера.
-* **`w-auto`**: Этот класс позволяет изображению автоматически масштабировать свою **ширину** в соответствии с его исходным соотношением сторон. В сочетании с `max-h-[80vh]` это гарантирует, что изображение не будет выглядеть растянутым или сплющенным.
-* **`flex items-start justify-center`**: Я также добавил эти классы к родительскому `div`. Это центрирует изображение по горизонтали внутри его контейнера и выравнивает его по верхнему краю.
