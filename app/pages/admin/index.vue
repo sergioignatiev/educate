@@ -13,6 +13,7 @@ const description = ref('')
 const category = ref('')
 const image = ref<string[]>([])
 const oneImage=ref<string>('')
+const seller=ref<string>('')
 const addImage=()=>{
 image.value.push(oneImage.value)
 oneImage.value=''
@@ -31,12 +32,14 @@ const handleAddItem = async () => {
       description: description.value,
       category: category.value,
       image: image.value,
+      seller:seller.value
     })
     title.value = ''
     price.value = null
     description.value = ''
     category.value = ''
     image.value = []
+    seller.value=''
   } else {
     alert('Заполните все поля')
   }
@@ -53,6 +56,12 @@ const handleAddItem = async () => {
    
 
     <form action="" class="flex flex-col gap-4 items-center">
+       <input
+        v-model="seller"
+        placeholder="Продавец"
+        class="bg-slate-100"
+        required="true"
+      />
       <input
         v-model="title"
         placeholder="title"

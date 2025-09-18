@@ -29,12 +29,13 @@
         />
       </div>
 
-      <div class="w-full rounded-md bg-white p-6 shadow-lg md:w-1/2">
-        <nav class="flex gap-1">
-          <NuxtLink :to="`/products/${id}`">О Товаре</NuxtLink>
-          <NuxtLink :to="`/products/${id}/two`">Перейти к оформлению</NuxtLink>
-        </nav>
-        <NuxtPage />
+      <div class="w-full rounded-md bg-[blue] p-6 shadow-lg md:w-1/2">
+        <div class="mb-6 mt-6">
+          <p>{{ item?.seller }}</p>
+          <button @click="store.addToBasket(item)" class="w-full bg-[#FFD814] text-black font-semibold py-2 rounded-full shadow-md hover:bg-[#F7CA00] mb-2">Добавить в корзину</button>
+          <button class="w-full bg-[#FFA41C] text-black font-semibold py-2 rounded-full shadow-md hover:bg-[#FA9800]">Купить сейчас</button>
+        </div>
+        
         <h1 class="mb-1 text-2xl font-bold md:text-3xl">
           {{ item.title }}
         </h1>

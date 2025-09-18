@@ -11,7 +11,8 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { useCounterStore, storeToRefs } from '#imports';
+import { useCounterStore,storeToRefs } from '#imports';
+
 import ProductCard from '~/components/productElements/ProductCard.vue';
 
 const store = useCounterStore();

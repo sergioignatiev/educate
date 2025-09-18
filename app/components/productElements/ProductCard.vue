@@ -20,7 +20,7 @@
         </div>
       </div>
     </nuxt-link>
-    <button class="w-1/2 text-[13px] font-thin py-2 px-4 rounded-full bg-yellow-400 font-bold text-gray-800 shadow-sm hover:bg-yellow-500 transition-colors duration-200">
+    <button @click="store.addToBasket(props)" class="w-1/2 text-[13px] font-thin py-2 px-4 rounded-full bg-yellow-400 font-bold text-gray-800 shadow-sm hover:bg-yellow-500 transition-colors duration-200">
       В корзину
     </button>
   </div>
@@ -28,8 +28,10 @@
 
 <script lang="ts" setup>
 import { type User } from '@/interfaces/user'
+import { useCounterStore } from '#imports';
+const store=useCounterStore()
 
-defineProps<User>()
+const props=defineProps<User>()
 </script>
 
 <style>

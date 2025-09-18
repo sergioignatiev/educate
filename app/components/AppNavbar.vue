@@ -12,7 +12,8 @@
 const navigation = [
   {id:1, path:'/', label:'Home'},
   {id:2, path:'/products', label:'Products'},
-  {id:3,path:'/admin',label:"Admin"}
+  {id:3,path:'/admin',label:"Admin"},
+    {id:4,path:'/basket',label:"Basket"}
 ]
 
 </script>
