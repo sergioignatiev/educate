@@ -7,5 +7,5 @@ export type User={
   price: number|null,
   description: string,
   category:string,
-  image:string
+  image:string[]
 }

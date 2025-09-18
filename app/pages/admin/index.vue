@@ -11,9 +11,12 @@ const title = ref('')
 const price = ref(null)
 const description = ref('')
 const category = ref('')
-const image = ref('')
-
-
+const image = ref<string[]>([])
+const oneImage=ref<string>('')
+const addImage=()=>{
+image.value.push(oneImage.value)
+oneImage.value=''
+}
 
 // загрузка данных при монтировании
 store.fetchItems()
@@ -33,7 +36,7 @@ const handleAddItem = async () => {
     price.value = null
     description.value = ''
     category.value = ''
-    image.value = ''
+    image.value = []
   } else {
     alert('Заполните все поля')
   }
@@ -78,7 +81,11 @@ const handleAddItem = async () => {
           <option value="картины">Картины</option>
         </select>
         </div>
-      <input v-model="image" placeholder="Image URL" class="bg-slate-100" />
+        <div class="flex w-full max-w-[1000px] gap-1">
+      <input  v-model="oneImage" placeholder="Image URL" class="bg-slate-100 basis-3/4" />
+     
+      <button class="basis-1/4 bg-blue-300 rounded-md " type="button" @click="addImage">Добавить Изображение</button>
+      </div>
       <button
         @click="handleAddItem"
         class="bg-blue-700 w-full max-w-[1000px] px-4 py-1 text-white rounded-sm"

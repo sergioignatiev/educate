@@ -46,7 +46,7 @@ const handleClearItems = async () => {
       <div class="flex items-center gap-4 bg-slate-100 rounded-md p-4 justify-between mt-4">
         <section class="flex gap-4 items-center">
         <img
-          :src="item.image"
+          :src="item.image[0]"
           width="50"
           height="50"
           :alt="item.title"
