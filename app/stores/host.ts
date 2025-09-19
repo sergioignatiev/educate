@@ -1,25 +1,29 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { type User } from '~/interfaces/user'
-interface Basket extends User{
-  quantity?:number
+
+interface Basket extends Omit<User, 'price'> {
+  quantity: number
+  price: number // Теперь price будет только number, а не number | null
 }
+
 export const useCounterStore = defineStore('host', () => {
   const data = ref<User[]>([])  // сюда будем складывать items
 const basket=ref<Basket[]|null>([])
-  const addToBasket=(item:User)=>{
+
+const addToBasket = (item: User, quantity: number) => {
   const existingItem = basket.value?.find((p) => p.id === item.id);
 
   if (existingItem) {
-    // Если товар найден, увеличиваем его количество
-    // Предполагается, что у вашего типа User есть свойство quantity
-    existingItem.quantity = (existingItem.quantity || 1) + 1;
+    // If the item exists, add the specified quantity
+    existingItem.quantity = (existingItem.quantity || 0) + quantity;
+    
   } else {
-    // Если товара нет, добавляем его с количеством 1
-    // Добавляем новое свойство quantity
-    basket.value?.push({ ...item});
+    //так как в items price опционален то здесь меняем на as number
+    basket.value?.push({ ...item, quantity, price: item.price as number });
   }
-}
+};
+
 
   const fetchItems = async () => {
     data.value = await $fetch<User[]>('/api/items/get')

@@ -32,7 +32,8 @@ const handleAddItem = async () => {
       description: description.value,
       category: category.value,
       image: image.value,
-      seller:seller.value
+      seller:seller.value,
+      quantity:0
     })
     title.value = ''
     price.value = null

@@ -8,5 +8,6 @@ export type User={
   description: string,
   category:string,
   image:string[],
-  seller?:string
+  seller?:string,
+  quantity?:number
 }

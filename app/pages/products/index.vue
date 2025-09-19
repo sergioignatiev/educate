@@ -1,9 +1,9 @@
 <template>
   <div>
-    <section v-if="data.length" class="flex flex-wrap justify-center gap-1 p-4">
-      <div v-for="item in reversedItems" :key="item.id" class="flex flex-col">
-        <product-card v-bind="item" />
-      </div>
+    <section v-if="data.length" class="flex flex-wrap justify-center gap-6 pt-16 p-0">
+     
+        <product-card v-for="item in reversedItems" :key="item.id"  v-bind="item" />
+      
     </section>
     <p v-else class="p-4">Loading...</p>
   </div>
