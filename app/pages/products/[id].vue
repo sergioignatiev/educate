@@ -1,10 +1,7 @@
 <template>
   <div class="p-4 sm:p-8 md:p-12 lg:p-16 bg-gray-50">
-    <NuxtLink to="/products" class="inline-block text-gray-600 hover:text-gray-900 transition-colors mb-6">
-      <span class="inline-block align-middle mr-1">←</span>
-      <span class="inline-block align-middle">К списку продуктов</span>
-    </NuxtLink>
-
+    
+<ProductIdLink/>
     <div v-if="item" class="bg-white rounded-lg shadow-lg">
       <div class="flex flex-col md:flex-row">
         <div class="p-6 md:p-8 lg:p-12 w-full md:w-1/2 md:sticky md:top-4 md:h-screen">
@@ -54,12 +51,12 @@
             </p>
             
             <div class="mb-4 pt-4">
-              <span class="text-sm font-semibold text-gray-600">Количество в корзине:</span>
+              <span class="text-sm font-semibold text-gray-600">Количество в корзине: </span>
               <span class="text-lg font-bold text-black">{{ quantityInBasket?.quantity || 0 }}</span>
             </div>
 
             <p class="text-sm font-semibold text-gray-600">
-              Категория: <span class="font-normal">{{ item.category }}</span>
+              Категория: <span class="font-normal capitalize">{{ item.category }}</span>
             </p>
 
             <div class="border-t border-gray-200 pt-6 mt-6">
@@ -97,6 +94,7 @@
 </template>
 
 <script lang="ts" setup>
+import ProductIdLink from '~/components/productElements/ProductIdLink.vue';
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCounterStore } from '../../stores/host';
@@ -124,7 +122,7 @@ const index = ref(0);
 const addToBasketAndReset = () => {
 if(item.value){
   store.addToBasket(item.value,totalInBasket.value);
-  totalInBasket.value=0
+  totalInBasket.value=1
 }
 };
 onMounted(async () => {

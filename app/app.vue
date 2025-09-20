@@ -5,7 +5,7 @@
     <NuxtLayout>
       <NuxtPage/>
     </NuxtLayout>
-    <Footer/>
+ 
   </div>
 </template>
 <script setup>

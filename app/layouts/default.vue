@@ -2,5 +2,6 @@
   <div>
     <AppNavbar/>
     <slot />
+  
   </div>
 </template>
