@@ -1,13 +1,20 @@
 <template>
   <div class="p-4 sm:p-8 md:p-12 lg:p-16 bg-gray-50">
-    
-<ProductIdLink/>
+    <ProductIdLink />
+
     <div v-if="item" class="bg-white rounded-lg shadow-lg">
       <div class="flex flex-col md:flex-row">
+        <!-- Левая колонка: изображения -->
         <div class="p-6 md:p-8 lg:p-12 w-full md:w-1/2 md:sticky md:top-4 md:h-screen">
           <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+            <!-- Миниатюры -->
             <div class="flex md:flex-col gap-2 order-2 md:order-1 mt-4 md:mt-0">
-              <div v-for="(img, id) in item.image" :key="id" @mouseover="handleImageHover(id)" class="cursor-pointer">
+              <div
+                v-for="(img, id) in compressedImages"
+                :key="id"
+                @mouseover="handleImageHover(id)"
+                class="cursor-pointer"
+              >
                 <img
                   width="60"
                   height="60"
@@ -18,9 +25,12 @@
                 />
               </div>
             </div>
+
+            <!-- Основное изображение -->
             <div class="flex-1 order-1 md:order-2 flex items-center justify-center w-full">
               <img
-                :src="item.image[index]"
+                v-if="compressedImages.length"
+                :src="compressedImages[index]"
                 :alt="item.title"
                 class="w-full h-auto max-h-[70vh] rounded-md object-contain"
               />
@@ -28,6 +38,7 @@
           </div>
         </div>
 
+        <!-- Правая колонка: информация о товаре -->
         <div class="p-6 md:p-8 lg:p-12 w-full md:w-1/2 flex flex-col justify-between">
           <div class="space-y-4">
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-800">
@@ -49,7 +60,7 @@
             <p class="text-sm text-gray-500">
               <span class="text-blue-500 hover:underline cursor-pointer">Бесплатный возврат</span>
             </p>
-            
+
             <div class="mb-4 pt-4">
               <span class="text-sm font-semibold text-gray-600">Количество в корзине: </span>
               <span class="text-lg font-bold text-black">{{ quantityInBasket?.quantity || 0 }}</span>
@@ -64,24 +75,33 @@
               <p class="text-sm sm:text-base text-gray-600 leading-relaxed">{{ item.description }}</p>
             </div>
           </div>
-          
+
           <div class="mt-8 flex items-center gap-4">
             <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden h-12 w-32">
-              <button @click="totalInBasket>1?totalInBasket++:totalInBasket=0"  class="w-1/3 text-2xl text-gray-600 flex justify-center items-center h-full hover:bg-gray-100 transition-colors duration-200">
+              <button
+                @click="totalInBasket>1?totalInBasket--:totalInBasket=1"
+                class="w-1/3 text-2xl text-gray-600 flex justify-center items-center h-full hover:bg-gray-100 transition-colors duration-200"
+              >
                 −
               </button>
               <input
                 type="number"
                 class="w-1/3 text-lg text-center font-semibold border-none outline-none h-full"
                 v-model="totalInBasket"
-               min="1"
-               max="10"
+                min="1"
+                max="10"
               />
-              <button @click="totalInBasket++"  class="w-1/3 text-2xl text-gray-600 flex justify-center items-center h-full hover:bg-gray-100 transition-colors duration-200">
+              <button
+                @click="totalInBasket++"
+                class="w-1/3 text-2xl text-gray-600 flex justify-center items-center h-full hover:bg-gray-100 transition-colors duration-200"
+              >
                 +
               </button>
             </div>
-            <button @click="addToBasketAndReset" class="flex-1 bg-gray-800 text-white font-semibold py-3 rounded-md shadow-md hover:bg-gray-900 transition-colors duration-200">
+            <button
+              @click="addToBasketAndReset"
+              class="flex-1 bg-gray-800 text-white font-semibold py-3 rounded-md shadow-md hover:bg-gray-900 transition-colors duration-200"
+            >
               Добавить в корзину
             </button>
           </div>
@@ -95,46 +115,67 @@
 
 <script lang="ts" setup>
 import ProductIdLink from '~/components/productElements/ProductIdLink.vue';
-import { computed, onMounted, ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCounterStore } from '../../stores/host';
 import { storeToRefs } from 'pinia';
 import { type User } from '~/interfaces/user';
-
-
 
 const store = useCounterStore();
 const { data, basket } = storeToRefs(store);
 
 const route = useRoute();
 const id = computed(() => route.params.id as string);
-
 const item = computed(() => data.value.find((i: User) => i.id === id.value));
 const quantityInBasket = computed(() => basket.value?.find((q: User) => q.id === id.value));
 
+const index = ref(0);
+const totalInBasket = ref(1);
+const compressedImages = ref<string[]>([]);
 
 function handleImageHover(x: number) {
   index.value = x;
 }
-const totalInBasket=ref(1)
-const index = ref(0);
 
 const addToBasketAndReset = () => {
-if(item.value){
-  store.addToBasket(item.value,totalInBasket.value);
-  totalInBasket.value=1
+  if(item.value){
+    store.addToBasket(item.value,totalInBasket.value);
+    totalInBasket.value=1;
+  }
 }
-};
+
+// Сжатие изображения в браузере
+async function compressImage(fileOrUrl: string, maxWidth = 800, maxHeight = 800) {
+  return new Promise<string>((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      let { width, height } = img;
+      if (width > maxWidth) { height = (maxWidth / width) * height; width = maxWidth; }
+      if (height > maxHeight) { width = (maxHeight / height) * width; height = maxHeight; }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return reject('No canvas context');
+
+      ctx.drawImage(img, 0, 0, width, height);
+      resolve(canvas.toDataURL('image/jpeg', 0.7)); // сжатие до 70%
+    };
+    img.onerror = reject;
+    img.src = fileOrUrl;
+  });
+}
+
 onMounted(async () => {
   if (data.value.length === 0) {
     await store.fetchItems();
   }
-});
-useSeoMeta({
-  title: `BALD-E | ${item.value?.title || ''}`,
-  description: 'This is my amazing site, let me tell you all about it.',
-  ogDescription: 'This is my amazing site, let me tell you all about it.',
-  ogImage: 'https://example.com/image.png',
-  twitterCard: 'summary_large_image',
+  if(item.value){
+    compressedImages.value = await Promise.all(
+      item.value.image.map(img => compressImage(img, 600, 600))
+    );
+  }
 });
 </script>

@@ -3,7 +3,7 @@
     <nuxt-link :to="`/products/${id}`"
       class="w-full flex flex-col items-start mb-2 flex-grow">
       <div class="w-full h-[200px] flex items-center justify-center mb-2 overflow-hidden">
-        <img class="max-w-full max-h-full object-contain" :src="image[0]" :alt="title" />
+        <img class="max-w-full max-h-full object-contain" :src="image[0]" :alt="title" loading="lazy" />
       </div>
       <div class="flex flex-col flex-grow w-full">
         <h1 class="w-full text-sm font-normal text-gray-800 whitespace-nowrap overflow-hidden text-ellipsis mb-1">
