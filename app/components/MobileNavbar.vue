@@ -6,9 +6,9 @@
         <li
           v-for="item in navItems"
           :key="item.name"
-          class="flex flex-col items-center justify-center"
+          class="flex flex-col items-center justify-center text-red-700"
         >
-          <Icon class="text-red-700" :name="item.icon" :size="iconSize" />
+          <Icon  :name="item.icon" :size="iconSize" />
           <p>{{ item.text }}</p>
         </li>
       </ul>

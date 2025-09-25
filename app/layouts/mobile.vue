@@ -1,6 +1,8 @@
 <template>
   <div>
+    <main class="pb-16">
     <slot/>
+    </main>
    <MobileNavbar/>
   </div>
 </template>
