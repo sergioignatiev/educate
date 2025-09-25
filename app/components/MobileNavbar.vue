@@ -1,19 +1,19 @@
 
 <template>
-  <div>
-    <nav class="py-4 w-full fixed bottom-0 bg-white">
+
+    <nav class=" p-4 w-full fixed bottom-0 bg-white">
       <ul class="flex justify-between">
         <li
           v-for="item in navItems"
           :key="item.name"
           class="flex flex-col items-center justify-center"
         >
-          <Icon :name="item.icon" :size="iconSize" />
+          <Icon class="text-red-700" :name="item.icon" :size="iconSize" />
           <p>{{ item.text }}</p>
         </li>
       </ul>
     </nav>
-  </div>
+
 </template>
 
 <script setup>

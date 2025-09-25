@@ -2,7 +2,7 @@
   <div>
     
       
-    <NuxtLayout name="mobile">
+    <NuxtLayout :name="layoutName">
       
       <NuxtPage/>
     </NuxtLayout>
@@ -10,6 +10,26 @@
   </div>
 </template>
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const layoutName = ref('default')
+
+function updateLayout() {
+  if (window.innerWidth < 768) {
+    layoutName.value = 'mobile'
+  } else {
+    layoutName.value = 'default'
+  }
+}
+
+onMounted(() => {
+  updateLayout()
+  window.addEventListener('resize', updateLayout)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateLayout)
+})
 useSeoMeta({
   title:"BALD-E",
   lang:'ru',
