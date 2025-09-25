@@ -91,6 +91,7 @@ const handleAddItem = async () => {
           <option value="картины">Картины</option>
             <option value="обувь">Обувь</option>
             <option value="велосипеды">Велосипеды</option>
+               <option value="косметика">Косметика</option>
         </select>
         </div>
         <div class="flex w-full max-w-[1000px] gap-1">
