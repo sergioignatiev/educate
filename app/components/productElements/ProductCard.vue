@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full sm:w-[200px] h-[350px] p-4 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between h-full">
+  <div class="sm:w-[200px] h-[350px] p-4 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between h-full">
     <nuxt-link :to="`/products/${id}`"
       class="w-full flex flex-col items-start mb-2 flex-grow">
       <div class="w-full h-[200px] flex items-center justify-center mb-2 overflow-hidden">

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col md:flex-row bg-gray-50 min-h-screen py-16 relative">
+  <div class="flex flex-col md:flex-row bg-gray-50 min-h-screen py-6 md:py-16 relative">
     
     <products-aside
       v-model:price="globalRange"
@@ -10,8 +10,14 @@
     />
 
     <div class="flex-1">
-      <div class="md:invisible bg-blue-100 text-end" @click="asideVisibility=!asideVisibility">#</div>
-      <main class="flex justify-start flex-wrap gap-4">
+      <section class="md:invisible flex justify-end" >
+<div class="flex items-center justify-center p-1 border-solid border-1 border-slate-300 w-fit rounded-md" @click="asideVisibility=!asideVisibility">
+         <Icon name="tabler:filter" size="32px" />
+     </div>
+
+    
+      </section>
+      <main class="grid px-2 py-4 sm:px-0 sm:py-0 grid-cols-2 sm:flex sm:justify-start flex-wrap gap-4">
         <product-card
           v-for="item in filtered"
           :key="item.id"

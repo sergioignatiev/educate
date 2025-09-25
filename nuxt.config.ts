@@ -5,5 +5,5 @@ export default defineNuxtConfig({
    css: [
     // локальные файлы
     '~/assets/css/main.css'],
-  modules: ['@unocss/nuxt', '@pinia/nuxt',  '@nuxt/image',],
+  modules: ['@unocss/nuxt', '@pinia/nuxt',  '@nuxt/image','@nuxt/icon' ],
 })
