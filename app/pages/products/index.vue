@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col md:flex-row bg-gray-50 min-h-screen py-6 md:py-16 relative">
-    
+
     <products-aside
       v-model:price="globalRange"
       v-model:categories="globalCategories"
@@ -9,15 +9,15 @@
 :visibility="asideVisibility"
     />
 
-    <div class="flex-1">
-      <section class="md:invisible flex justify-end" >
+    <div class="flex-1 px-2  sm:px-0 sm:py-0">
+      <section class="md:invisible flex justify-end py-4" >
 <div class="flex items-center justify-center p-1 border-solid border-1 border-slate-300 w-fit rounded-md" @click="asideVisibility=!asideVisibility">
          <Icon name="tabler:filter" size="32px" />
      </div>
 
     
       </section>
-      <main class="grid px-2 py-4 sm:px-0 sm:py-0 grid-cols-2 sm:flex sm:justify-start flex-wrap gap-4">
+      <main class="grid  grid-cols-2 sm:flex sm:justify-start flex-wrap gap-4">
         <product-card
           v-for="item in filtered"
           :key="item.id"
@@ -31,10 +31,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { useCounterStore, storeToRefs } from '#imports';
-
+import { useRoute } from 'vue-router';
 import ProductCard from '~/components/productElements/ProductCard.vue';
 import ProductsAside from '~/components/productElements/ProductsAside.vue';
-
+const route=useRoute()
 const store = useCounterStore();
 const { data } = storeToRefs(store);
 
@@ -54,6 +54,8 @@ const reset=()=>{
  globalRange.value=1000
  globalCategories.value=[]
 }
+
+
 // Затем SEO
 useSeoMeta({
   title: 'BALD-E | ВСЕ ТОВАРЫ',
@@ -68,7 +70,10 @@ onMounted(async () => {
   if (data.value.length === 0) {
     await store.fetchItems();
   }
-});
+  if(route.query.category){
+  globalCategories.value.push(route.query.category as string)
+
+}});
 </script>
 
 <style scoped>
