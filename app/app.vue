@@ -12,7 +12,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const layoutName = ref('default')
+const layoutName = ref(null)
 
 function updateLayout() {
   if (window.innerWidth < 768) {
