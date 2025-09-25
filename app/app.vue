@@ -2,7 +2,8 @@
   <div>
     
       
-    <NuxtLayout>
+    <NuxtLayout name="mobile">
+      
       <NuxtPage/>
     </NuxtLayout>
  
