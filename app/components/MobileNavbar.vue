@@ -1,7 +1,7 @@
 
 <template>
 
-    <nav class=" p-4 w-full fixed bottom-0 bg-white">
+    <nav class=" p-4 w-full fixed bottom-0 bg-white z-2">
       <ul class="flex justify-between">
         <li
           v-for="item in navItems"
