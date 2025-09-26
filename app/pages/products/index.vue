@@ -1,15 +1,18 @@
 <template>
   <div class="flex flex-col md:flex-row bg-gray-50 min-h-screen py-6 md:py-16 relative">
 
+ 
+ 
     <products-aside
       v-model:price="globalRange"
       v-model:categories="globalCategories"
       :product="data"
       @reset="reset"
+     class="z-10"
 :visibility="asideVisibility"
     />
 
-    <div class="flex-1 px-2  sm:px-0 sm:py-0">
+    <div class="flex-1 px-2  sm:px-0 sm:py-0 " >
       <section class="md:invisible flex justify-end py-4" >
 <div class="flex items-center justify-center p-1 border-solid border-1 border-slate-300 w-fit rounded-md" @click="asideVisibility=!asideVisibility">
          <Icon name="tabler:filter" size="32px" />
@@ -17,7 +20,14 @@
 
     
       </section>
+
       <main class="grid  grid-cols-2 sm:flex sm:justify-start flex-wrap gap-4">
+         <div
+    v-if="!asideVisibility"
+    class="fixed inset-0 bg-black/50"
+    @click="asideVisibility = true"
+  ></div>
+
         <product-card
           v-for="item in filtered"
           :key="item.id"
@@ -74,6 +84,15 @@ onMounted(async () => {
   globalCategories.value.push(route.query.category as string)
 
 }});
+
+
+watch(asideVisibility, (val) => {
+  if (val) {
+    document.body.classList.remove('overflow-hidden')
+  } else {
+    document.body.classList.add('overflow-hidden')
+  }
+})
 </script>
 
 <style scoped>
