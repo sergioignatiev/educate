@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <client-only>
     
-      
+     
     <NuxtLayout :name="layoutName">
       
       <NuxtPage/>
     </NuxtLayout>
  
-  </div>
+  </client-only>
 </template>
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const layoutName = ref(null)
+const layoutName = ref('mobile')
 
 function updateLayout() {
   if (window.innerWidth < 768) {
