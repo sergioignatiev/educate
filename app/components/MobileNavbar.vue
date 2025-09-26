@@ -6,10 +6,12 @@
         <li
           v-for="item in navItems"
           :key="item.name"
-          class="flex flex-col items-center justify-center text-red-700"
+          class=""
         >
+        <NuxtLink class="flex flex-col items-center justify-center text-slate-500" :to="item.link">
           <Icon  :name="item.icon" :size="iconSize" />
           <p>{{ item.text }}</p>
+          </NuxtLink>
         </li>
       </ul>
     </nav>
@@ -22,9 +24,15 @@ import { ref } from 'vue'
 const iconSize = ref(22)
 
 const navItems = [
-  { name: 'home', text: 'Главная', icon: 'ph:house-simple-fill' },
-  { name: 'cart', text: 'Корзина', icon: 'ph:shopping-cart-simple-bold' },
-  { name: 'profile', text: 'Профиль', icon: 'ph:user-list-bold' },
-  { name: 'settings', text: 'Настройки', icon: 'ph:gear-six-bold' }
+  { name: 'home', text: 'Главная', icon: 'ph:house-simple-fill',link:"/" },
+  
+  { name: 'products', text: 'Продукты', icon: 'ph:user-list-bold',link:'/products' },
+  { name: 'admin', text: 'Админ', icon: 'ph:gear-six-bold',link:'/admin' },
+  { name: 'cart', text: 'Корзина', icon: 'ph:shopping-cart-simple-bold',link:'/basket' },
 ]
 </script>
+<style scoped>
+.router-link-exact-active{
+    color:black
+}
+</style>
