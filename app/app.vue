@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    
+   
      
     <NuxtLayout :name="layoutName">
       

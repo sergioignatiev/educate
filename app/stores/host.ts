@@ -47,5 +47,11 @@ const addToBasket = (item: User, quantity: number) => {
     await fetchItems()
   }
 const reversedItems = computed(() => [...data.value].reverse())
-  return { data, basket, fetchItems, addItem, deleteItem, clearItems,reversedItems,addToBasket }
+
+const uniqueCategories=computed(()=>{
+  const allCategories=data.value.map(item=>item.category)
+  const filteredCategories=Array.from(new Set(allCategories))
+  return filteredCategories
+})
+  return { data, basket, fetchItems, addItem, deleteItem, clearItems,reversedItems,addToBasket,uniqueCategories }
 })

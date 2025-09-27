@@ -18,7 +18,7 @@
           
           <nuxt-link :to="{ path: '/products', query: { category: item.label } }" v-for="item in chosenCategories" class="relative overflow-hidden rounded-xl shadow-lg group" :key="item.id">
             <img :src="item.image" :alt="item.label" class="w-full h-80 object-cover transform transition-transform duration-500 group-hover:scale-110">
-            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-100 transition-opacity duration-300">
               <span class="text-white text-2xl font-semibold tracking-wide capitalize">{{ item.label }}</span>
             </div>
           </nuxt-link>
