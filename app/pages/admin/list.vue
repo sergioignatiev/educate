@@ -14,18 +14,18 @@
       <div
         v-for="item in reversedItems"
         :key="item.id"
-        class="bg-white shadow rounded-lg p-4 flex items-center gap-4"
+        class="bg-white shadow rounded-lg p-4 flex flex-col sm:flex-row items-start sm:items-center gap-4"
       >
         <!-- Изображение -->
         <img
           :src="item.image[0]"
           :alt="item.title"
-          class="w-20 h-20 object-cover rounded-md flex-shrink-0"
+          class="w-full sm:w-20 h-40 sm:h-20 object-cover rounded-md flex-shrink-0"
           loading="lazy"
         />
 
         <!-- Информация -->
-        <div class="flex-1">
+        <div class="flex-1 w-full">
           <h2 class="font-semibold text-lg text-gray-800">{{ item.title }}</h2>
           <p class="text-gray-600 text-sm">Категория: {{ item.category || '—' }}</p>
           <p class="text-gray-600 text-sm">Цена: ${{ item.price }}</p>
@@ -35,7 +35,7 @@
         <button
           type="button"
           @click="handleDeleteItem(item.id)"
-          class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md transition"
+          class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md mt-2 sm:mt-0 flex-shrink-0 w-full sm:w-auto"
         >
           Удалить
         </button>
@@ -44,6 +44,7 @@
 
   </div>
 </template>
+
 
 <script setup lang="ts">
 import { onMounted } from 'vue'

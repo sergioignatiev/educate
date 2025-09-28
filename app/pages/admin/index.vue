@@ -73,22 +73,23 @@
         </select>
       </div>
 
-      <!-- Изображения -->
-      <div class="flex gap-2">
-        <input
-          v-model="oneImage"
-          type="text"
-          placeholder="URL изображения"
-          class="border border-gray-300 rounded-md px-3 py-2 flex-grow focus:outline-none focus:ring-2 focus:ring-indigo-400"
-        />
-        <button
-          type="button"
-          @click="addImage"
-          class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition"
-        >
-          Добавить
-        </button>
-      </div>
+    <!-- Изображения -->
+<!-- Изображения -->
+<div class="flex flex-col sm:flex-row gap-2 w-full">
+  <input
+    v-model="oneImage"
+    type="text"
+    placeholder="URL изображения"
+    class="border border-gray-300 rounded-md px-3 py-2 flex-1 min-w-0 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+  />
+  <button
+    type="button"
+    @click="addImage"
+    class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition flex-shrink-0 w-full sm:w-auto"
+  >
+    Добавить
+  </button>
+</div>
 
       <!-- Список добавленных изображений -->
       <div v-if="image.length" class="flex flex-wrap gap-2">

@@ -36,6 +36,7 @@ const navItems = [
 
 <style scoped>
 .router-link-exact-active {
-  color: black;
+  background-color: transparent;
+  color: blue;
 }
 </style>

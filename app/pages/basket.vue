@@ -5,31 +5,31 @@
       <div
         v-for="b in basket"
         :key="b.id"
-        class="flex items-center gap-4 bg-white shadow rounded-lg p-4 mb-3"
+        class="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-white shadow rounded-lg p-4 mb-3"
       >
         <!-- Картинка -->
         <img
           :src="b.image?.[0]"
           :alt="b.title"
-          class="w-20 h-20 object-cover rounded-md flex-shrink-0"
+          class="w-full sm:w-20 h-40 sm:h-20 object-cover rounded-md flex-shrink-0"
         />
 
         <!-- Информация -->
-        <div class="flex-1">
+        <div class="flex-1 w-full">
           <h2 class="font-semibold text-lg">{{ b.title }}</h2>
-          <p class="text-gray-800 font-bold">Итого: ${{ b.price * b.quantity }}</p>
+          <p class="text-gray-800 font-bold mt-1 sm:mt-0">Итого: ${{ b.price * b.quantity }}</p>
 
           <!-- Количество -->
-          <div class="flex items-center gap-2 mt-2">
+          <div class="flex items-center gap-2 mt-2 flex-wrap">
             <button
-              class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded"
+              class="w-10 h-10 flex items-center justify-center bg-gray-200 rounded"
               @click="decrement(b)"
             >−</button>
 
             <span class="px-3">{{ b.quantity }}</span>
 
             <button
-              class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded"
+              class="w-10 h-10 flex items-center justify-center bg-gray-200 rounded"
               @click="increment(b)"
             >+</button>
           </div>
@@ -37,7 +37,7 @@
 
         <!-- Удалить -->
         <button
-          class="bg-red-600 text-white px-3 py-1 rounded-md"
+          class="bg-red-600 text-white px-4 py-2 rounded-md mt-2 sm:mt-0 flex-shrink-0 w-full sm:w-auto"
           @click="remove(b)"
         >Удалить</button>
       </div>

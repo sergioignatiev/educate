@@ -20,7 +20,7 @@
     </nav>
 
     <!-- Контент дочерней страницы -->
-    <div class="bg-gray-50 p-4 rounded-md shadow">
+    <div class="bg-gray-50 py-4 rounded-md shadow">
       <NuxtPage />
     </div>
   </TheWrapper>
