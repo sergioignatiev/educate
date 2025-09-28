@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-col md:flex-row bg-gray-50 min-h-screen py-6 md:py-16 relative">
+  <TheWrapper class="bg-slate-100">
+  <div class="flex flex-col md:flex-row  min-h-screen  relative">
 
  
  
@@ -36,6 +37,7 @@
       </main>
     </div>
   </div>
+  </TheWrapper>
 </template>
 
 <script setup lang="ts">

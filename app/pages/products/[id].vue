@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 sm:p-8 md:p-12 lg:p-16 bg-gray-50">
+  <TheWrapper>
     <!-- 🔗 Навигация -->
     <ProductIdLink />
 
@@ -44,7 +44,7 @@
 
     <!-- ⏳ Лоадер -->
     <p v-else class="mt-10 text-center text-xl text-gray-600">Загрузка...</p>
-  </div>
+  </TheWrapper>
 </template>
 
 <script lang="ts" setup>
