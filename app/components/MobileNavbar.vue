@@ -12,10 +12,10 @@
 
           <!-- Счётчик только для корзины -->
           <span
-            v-if="item.name === 'cart'"
+            v-if="item.name === 'cart'&&basketCount>0"
             class="absolute -top-1 right-2 bg-red-500 text-white text-xs font-bold w-4 h-4 flex items-center justify-center rounded-full"
           >
-            0
+            {{ basketCount }}
           </span>
 
           <p class="text-xs mt-1">{{ item.text }}</p>
@@ -26,6 +26,9 @@
 </template>
 
 <script setup>
+import { useCounterStore,storeToRefs } from '#imports';
+const store=useCounterStore()
+const {basketCount}=storeToRefs(store)
 const navItems = [
   { name: 'home', text: 'Главная', icon: 'ph:house', link:"/" },
   { name: 'products', text: 'Продукты', icon: 'ph:bag', link:'/products' },

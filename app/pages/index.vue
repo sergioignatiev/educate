@@ -1,15 +1,10 @@
 <template>
-  <div class="relative min-h-screen bg-white text-gray-800 font-sans">
- 
-    <header class="relative h-[85vh] flex items-center justify-center text-white text-center p-4">
-      <div class="absolute inset-0 bg-gray-900/60 z-1" :style="{  'background-size': 'cover', 'background-position': 'center' }"></div>
-      
-      <div class="relative z-2 max-w-4xl space-y-6">
-        <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight text-black">Ваш Стиль, Наша Вселенная</h1>
-        <p class="text-lg sm:text-xl font-light text-black">Исследуйте галактику моды и откройте для себя вещи, которые действительно не от мира сего.</p>
-        <nuxt-link to="/products" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 transform hover:-translate-y-1 shadow-lg">Начать Покупки</nuxt-link>
-      </div>
-    </header>
+  <the-wrapper>
+   
+  <div class="relative min-h-screen bg-white text-gray-800 font-sans py-16">
+    <index-swiper/>
+
+
 
     <section id="featured" class="py-16 bg-gray-50">
       <div class="container mx-auto px-4">
@@ -53,21 +48,22 @@
 
 
   </div>
+  </the-wrapper>
 </template>
 
 <script setup>
 import { useCounterStore } from '#imports'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+import IndexSwiper from '~/components/index/IndexSwiper.vue'
 const store = useCounterStore()
 const { data } = storeToRefs(store) 
 
 const chosenCategories=ref([
   {
-    id:1,label:"электроника",image:'https://m.media-amazon.com/images/I/71CogDdSfyL._AC_SX679_.jpg'
+    id:1,label:"электроника",image:'https://plus.unsplash.com/premium_photo-1679079456083-9f288e224e96?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZWxlY3Ryb25pY3N8ZW58MHx8MHx8fDA%3D'
   },
-  {id:2,label:"одежда",image:'https://m.media-amazon.com/images/I/61Isb40O6wL._AC_SX569_.jpg'},
-  {id:3,label:'косметика',image:'https://m.media-amazon.com/images/I/71rDL9n8MaL._SX522_.jpg'}
+  {id:2,label:"одежда",image:'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D'},
+  {id:3,label:'косметика',image:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29zbWV0aWN8ZW58MHx8MHx8fDA%3D'}
 ])
 
 const bestsellers=ref([

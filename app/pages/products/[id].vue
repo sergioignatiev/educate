@@ -1,5 +1,5 @@
 <template>
-  <TheWrapper>
+  <TheWrapper class="pb-24">
     <!-- 🔗 Навигация -->
     <ProductIdLink />
 

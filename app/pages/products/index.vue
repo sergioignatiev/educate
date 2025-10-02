@@ -1,5 +1,5 @@
 <template>
-  <TheWrapper class="bg-slate-100">
+  <TheWrapper class="bg-slate-100 pb-32">
   <div class="flex flex-col md:flex-row  min-h-screen  relative">
 
  

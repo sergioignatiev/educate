@@ -117,7 +117,7 @@
           <span class="text-3xl transition duration-200 group-hover:scale-110 transform">🛒</span>
           
           <!-- Счетчик: цвет фона синий, цвет текста белый -->
-          <span class="absolute top-0 right-1 bg-indigo-600 text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center text-white">{{ basket?.length }}</span>
+          <span class="absolute top-0 right-1 bg-indigo-600 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center text-white" v-if="basketCount>0">{{ basketCount }}</span>
         </NuxtLink>
     </div>
   </nav>
@@ -130,7 +130,7 @@ import { useCounterStore,storeToRefs } from '#imports';
 import { useRouter } from 'vue-router'
 
 const store = useCounterStore()
-const {data, basket} = storeToRefs(store)
+const {data, basketCount} = storeToRefs(store)
 
 const router = useRouter()
 

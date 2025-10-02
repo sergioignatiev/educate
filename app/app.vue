@@ -5,6 +5,8 @@
     <NuxtLayout :name="layoutName">
       
       <NuxtPage/>
+    
+      <Footer/>
     </NuxtLayout>
  
   </client-only>

@@ -9,7 +9,17 @@ interface Basket extends Omit<User, 'price'> {
 
 export const useCounterStore = defineStore('host', () => {
   const data = ref<User[]>([])  // сюда будем складывать items
-const basket=ref<Basket[]|null>([])
+
+const basket = ref<Basket[]>(JSON.parse(localStorage.getItem('basket') || '[]'))
+
+watch(basket, (val) => {
+  localStorage.setItem('basket', JSON.stringify(val))
+}, { deep: true })
+const basketCount = computed(() =>
+  basket.value.reduce((sum, item) => sum + item.quantity, 0)
+)
+
+
 
 const addToBasket = (item: User, quantity: number) => {
   const existingItem = basket.value?.find((p) => p.id === item.id);
@@ -53,5 +63,5 @@ const uniqueCategories=computed(()=>{
   const filteredCategories=Array.from(new Set(allCategories))
   return filteredCategories
 })
-  return { data, basket, fetchItems, addItem, deleteItem, clearItems,reversedItems,addToBasket,uniqueCategories }
+  return { data, basket,basketCount, fetchItems, addItem, deleteItem, clearItems,reversedItems,addToBasket,uniqueCategories }
 })
