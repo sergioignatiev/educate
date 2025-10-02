@@ -17,8 +17,8 @@ const videos = [
     :slides-per-view="1"
     :space-between="0"
     :loop="true"
-    :autoplay="{ delay: 13000 }"
-     :effect="'fade'"
+    :autoplay="{ delay: 10000 }"
+    
     :fadeEffect="{ crossFade: true }"
     navigation
     :pagination="{ clickable: true }"
