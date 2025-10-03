@@ -1,7 +1,7 @@
 <template>
-  <TheWrapper class="pb-24">
+  <TheWrapper class="pb-36 ">
     <!-- 🔗 Навигация -->
-    <ProductIdLink />
+    <ProductIdLink class="py-8"/>
 
     <!-- 🛒 Карточка товара -->
     <div v-if="item" class="bg-white rounded-lg shadow-lg">

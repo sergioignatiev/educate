@@ -6,9 +6,7 @@
       
       <NuxtPage/>
     
-      <span class="invisible md:visible">
-      <Footer/>
-      </span>
+     
     </NuxtLayout>
  
   </client-only>

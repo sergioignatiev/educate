@@ -7,7 +7,7 @@
       class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition mb-4 w-full"
       @click="handleClearItems"
     >
-      DELETE ALL
+      Удалить все
     </button>
 
     <div class="space-y-4">

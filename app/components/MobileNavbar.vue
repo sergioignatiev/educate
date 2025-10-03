@@ -1,4 +1,5 @@
 <template>
+  <div class="">
   <nav class="p-4 w-full fixed bottom-0 bg-white z-20 border-t border-gray-200">
     <ul class="flex justify-between">
       <li
@@ -23,6 +24,7 @@
       </li>
     </ul>
   </nav>
+  </div>
 </template>
 
 <script setup>
@@ -34,6 +36,8 @@ const navItems = [
   { name: 'products', text: 'Продукты', icon: 'ph:bag', link:'/products' },
   { name: 'admin', text: 'Админ', icon: 'ph:gear-six', link:'/admin' },
   { name: 'cart', text: 'Корзина', icon: 'ph:shopping-cart', link:'/basket' },
+  // Добавленный элемент для поиска
+  { name: 'search', text: 'Поиск', icon: 'ph:magnifying-glass', link:'/search' },
 ]
 </script>
 

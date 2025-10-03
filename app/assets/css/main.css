@@ -61,15 +61,21 @@ a:focus, a:hover {
 /* Стрелки */
 .swiper-button-next,
 .swiper-button-prev {
-  color: white;      /* Меняет цвет иконки */
-  fill: white;       /* На всякий случай для SVG */
+  color: black;      /* Меняет цвет иконки */
+  fill: black;       /* На всякий случай для SVG */
 }
-
+@media (max-width:768px) {
+  .swiper-button-next,
+.swiper-button-prev{
+  display: none;
+}
+}
 /* Точки */
 .swiper-pagination-bullet {
-  background: rgba(255, 255, 255, 0.4); /* Неактивные */
+  background: white
 }
 
 .swiper-pagination-bullet-active {
   background: white; /* Активная */
+  transform: scale(120%);
 }

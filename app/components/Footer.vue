@@ -1,36 +1,66 @@
 <template>
-  <TheWrapper class="bg-[#E6F4FF] ">
-  <footer class="text-gray-800 py-6 px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-t border-blue-200">
-    <!-- Логотип -->
-    <div class="flex items-center gap-2">
-      <img src="https://nuxt-shopping-woad.vercel.app/logo2.png" alt="Logo" class="h-10 w-auto" />
-     
-    </div>
+  <footer class="shadow-black shadow-lg">
+<TheWrapper>
+    <div class="container ">
+      <div class="py-16 flex lg:flex-row flex-col justify-between gap-10 border-b border-gray-300">
 
-    <!-- Соц. ссылки -->
-    <div class="flex items-center gap-4">
-      <a href="#" target="_blank" aria-label="Telegram" class="text-blue-600 hover:text-blue-800">
-        <Icon name="ph:telegram-logo" size="28" />
-      </a>
-      <a href="#" target="_blank" aria-label="HeadHunter" class="text-blue-600 hover:text-blue-800">
-        <Icon name="ph:suitcase-simple" size="28" />
-      </a>
-      <a href="#" target="_blank" aria-label="GitHub" class="text-blue-600 hover:text-blue-800">
-        <Icon name="ph:github-logo" size="28" />
-      </a>
-      <a href="tel:#" aria-label="Phone" class="text-blue-600 hover:text-blue-800">
-        <Icon name="ph:phone" size="28" />
-      </a>
-    </div>
+        <div class="block lg:w-1/3 ">
+          <NuxtImg class="w-24 h-auto" src="https://nuxt-shopping-woad.vercel.app/_vercel/image?url=%2Flogo2.png&w=1536&q=100" alt="logo"/>
+          <div class="text-sm font-semibold pt-6 space-y-3 text-gray-600">
+            <p>
+              Данный магазин создан Игнатьевым Сергеем исключительно для учебных целей. Не предназначен для коммерческого использования. 
+            </p>
+            <p>
+              По вопросам сотрудничества обращайтесь ignatevsergey17@gmail.com или в <a target="_blank" class="underline hover:text-blue-600 transition-colors" href="https://t.me/SerjioIgnatev">Telegram</a>.
+            </p>
+          </div>
+        </div>
 
-    <!-- Текст -->
-    <div class="text-center text-sm opacity-80 md:text-right">
-      Проект выполнен в учебных целях Игнатьевым Сергеем
+        <div class="sm:flex lg:w-2/3 gap-10 justify-between">
+          <TheLinks :links="infoLinks">Информация</TheLinks>
+          <TheLinks :links="productLinks">Продукция</TheLinks>
+          <TheLinks :links="clientLinks">Клиентам</TheLinks>
+        </div>
+
+      </div>
+      
+      <TheBottom/>
     </div>
-    
+    </TheWrapper>
   </footer>
-  </TheWrapper>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import TheLinks from './TheFooter/TheLinks.vue';
+import TheBottom from './TheFooter/TheBottom.vue';
+import { ref } from 'vue';
+
+// Определяем интерфейс для типизации массивов ссылок
+interface Link {
+  id: number;
+  name: string;
+  link: string;
+}
+
+// 1. Ссылки для колонки "Информация"
+const infoLinks = ref<Link[]>([
+  { id: 1, name: "О Нас", link: "#" },
+  { id: 2, name: "Карьера", link: "#" },
+  { id: 3, name: "Пресса", link: "#" },
+  { id: 4, name: "FAQ", link: "#" }
+]);
+
+// 2. Ссылки для колонки "Продукция" (Пример нового массива)
+const productLinks = ref<Link[]>([
+  { id: 5, name: "Новинки", link: "#" },
+  { id: 6, name: "Скидки", link: "#" },
+  { id: 7, name: "Популярное", link: "#" }
+]);
+
+// 3. Ссылки для колонки "Клиентам" (Пример нового массива)
+const clientLinks = ref<Link[]>([
+  { id: 8, name: "Доставка", link: "#" },
+  { id: 9, name: "Возврат", link: "#" },
+  { id: 10, name: "Контакты", link: "#" }
+]);
 </script>

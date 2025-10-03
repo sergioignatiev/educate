@@ -1,25 +1,25 @@
 <template>
-  <TheWrapper>
-    <nav class="flex flex-col md:flex-row gap-2  mb-4">
+  <TheWrapper class="py-16">
+    <nav class="flex flex-col md:flex-row gap-6 mb-6">
       <NuxtLink
         to="/admin"
-        class="px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200 transition"
-        active-class="bg-blue-600 text-white"
-        exact
+        class="text-gray-700 hover:text-blue-500 transition-colors pb-1"
+        
+     
       >
-        Home
+        Админка
       </NuxtLink>
+
       <NuxtLink
         to="/admin/list"
-        class="px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200 transition"
-        active-class="bg-blue-600 text-white"
-        exact
+        class="text-gray-700 hover:text-blue-500 transition-colors pb-1"
+       
+      
       >
-        List
+        Список товаров
       </NuxtLink>
     </nav>
 
-    <!-- Контент дочерней страницы -->
     <div class="bg-gray-50 py-4 rounded-md shadow">
       <NuxtPage />
     </div>
@@ -31,7 +31,8 @@
 </script>
 
 <style scoped>
-.router-link-active{
-  color:red
+.router-link-exact-active{
+  color:blue;
+  font-weight: 700;
 }
 </style>
