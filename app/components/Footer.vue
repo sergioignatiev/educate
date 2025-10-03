@@ -1,12 +1,12 @@
 <template>
-  <footer class="shadow-black shadow-lg">
+  <footer class="shadow-black shadow-lg text-blue-900 ">
 <TheWrapper>
     <div class="container ">
       <div class="py-16 flex lg:flex-row flex-col justify-between gap-10 border-b border-gray-300">
 
         <div class="block lg:w-1/3 ">
-          <NuxtImg class="w-24 h-auto" src="https://nuxt-shopping-woad.vercel.app/_vercel/image?url=%2Flogo2.png&w=1536&q=100" alt="logo"/>
-          <div class="text-sm font-semibold pt-6 space-y-3 text-gray-600">
+          <NuxtImg class="w-12 h-auto" src="/favicon.ico" alt="logo"/>
+          <div class="text-sm font-semibold pt-6 space-y-3 text-blue-900">
             <p>
               Данный магазин создан Игнатьевым Сергеем исключительно для учебных целей. Не предназначен для коммерческого использования. 
             </p>
@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <div class="sm:flex lg:w-2/3 gap-10 justify-between">
+        <div class="sm:flex lg:w-2/3 gap-10 justify-between ">
           <TheLinks :links="infoLinks">Информация</TheLinks>
           <TheLinks :links="productLinks">Продукция</TheLinks>
           <TheLinks :links="clientLinks">Клиентам</TheLinks>

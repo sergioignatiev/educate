@@ -21,7 +21,7 @@
             <div class="flex-1 order-1 md:order-2 flex items-center justify-center w-full">
               <img
                 v-if="compressedImages.length"
-                :src="compressedImages[index]"
+                :src="mainImages[index]"
                 :alt="item.title"
                 class="w-full h-auto max-h-[70vh] rounded-md object-contain"
               />
@@ -52,6 +52,7 @@ import ProductIdLink from '~/components/productElements/ProductIdLink.vue';
 import ThumbnailId from '~/components/productElements/ThumbnailId.vue';
 import ProductIdInfo from '~/components/productElements/ProductIdInfo.vue';
 import ProductIdBasketCounter from '~/components/productElements/ProductIdBasketCounter.vue';
+import { compressImage } from '~/lib/imageCompressor';
 import { ref, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCounterStore } from '../../stores/host';
@@ -69,7 +70,7 @@ const quantityInBasket = computed(() => basket.value?.find((q: User) => q.id ===
 const index = ref(0);
 const totalInBasket = ref(1);
 const compressedImages = ref<string[]>([]);
-
+const mainImages=ref<string[]>([])
 function handleImageHover(x: number) {
   index.value = x;
 }
@@ -82,34 +83,6 @@ const addToBasketAndReset = () => {
 };
 
 // Сжатие изображения в браузере
-async function compressImage(fileOrUrl: string, maxWidth = 800, maxHeight = 800) {
-  return new Promise<string>((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      let { width, height } = img;
-      if (width > maxWidth) {
-        height = (maxWidth / width) * height;
-        width = maxWidth;
-      }
-      if (height > maxHeight) {
-        width = (maxHeight / height) * width;
-        height = maxHeight;
-      }
-
-      const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return reject('No canvas context');
-
-      ctx.drawImage(img, 0, 0, width, height);
-      resolve(canvas.toDataURL('image/jpeg', 0.7)); // сжатие до 70%
-    };
-    img.onerror = reject;
-    img.src = fileOrUrl;
-  });
-}
 
 onMounted(async () => {
   if (data.value.length === 0) {
@@ -117,6 +90,9 @@ onMounted(async () => {
   }
   if (item.value) {
     compressedImages.value = await Promise.all(
+      item.value.image.map((img) => compressImage(img, 160, 160))
+    );
+    mainImages.value=await Promise.all(
       item.value.image.map((img) => compressImage(img, 600, 600))
     );
   }

@@ -1,12 +1,12 @@
 <template>
   <the-wrapper>
    
-  <div class="relative min-h-screen bg-white text-gray-800 font-sans py-16">
+  <div class="relative min-h-screen  text-gray-800 font-sans py-16">
     <index-swiper/>
 
 
 
-    <section id="featured" class="py-16 bg-gray-50">
+    <section id="featured" class="py-16 ">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Избранные Категории</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

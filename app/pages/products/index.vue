@@ -33,6 +33,7 @@
           v-for="item in filtered"
           :key="item.id"
           v-bind="item"
+        
         />
       </main>
     </div>

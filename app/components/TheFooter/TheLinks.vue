@@ -5,7 +5,7 @@
     <NuxtLink 
       v-for="l in links" 
       :key="l.id" 
-      class="text-sm text-gray-700 font-bold hover:text-blue-600 mb-2 transition-colors duration-200" 
+      class="text-sm  font-bold hover:text-blue-600 mb-2 transition-colors duration-200" 
       :to="l.link"
     >
       {{ l.name }}

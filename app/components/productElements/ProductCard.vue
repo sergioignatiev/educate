@@ -25,8 +25,7 @@
 
 <script lang="ts" setup>
 import { type User } from '@/interfaces/user'
-import { useCounterStore } from '#imports';
-const store = useCounterStore()
+import { compressImage } from '~/lib/imageCompressor';
 
 const props = defineProps<User>()
 </script>

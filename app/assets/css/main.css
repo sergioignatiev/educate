@@ -61,8 +61,8 @@ a:focus, a:hover {
 /* Стрелки */
 .swiper-button-next,
 .swiper-button-prev {
-  color: black;      /* Меняет цвет иконки */
-  fill: black;       /* На всякий случай для SVG */
+  color: white;      /* Меняет цвет иконки */
+  fill: white;       /* На всякий случай для SVG */
 }
 @media (max-width:768px) {
   .swiper-button-next,
