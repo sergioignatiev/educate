@@ -3,7 +3,8 @@
     <nuxt-link :to="`/products/${id}`"
       class="w-full flex flex-col items-start mb-2 flex-grow">
       <div class="w-full h-[200px] flex items-center justify-center mb-2 overflow-hidden">
-        <img class="max-w-full max-h-full object-contain" :src="image[0]" :alt="title" loading="lazy" />
+        <img class="max-w-full max-h-full object-contain" v-show="compressedImages[0]" :src="compressedImages[0]" :alt="title" loading="lazy" />
+        
       </div>
       <div class="flex flex-col flex-grow w-full">
         <h1 class="w-full text-sm font-normal text-gray-800 whitespace-nowrap overflow-hidden text-ellipsis mb-1">
@@ -26,8 +27,20 @@
 <script lang="ts" setup>
 import { type User } from '@/interfaces/user'
 import { compressImage } from '~/lib/imageCompressor';
+const compressedImages = ref<string[]>([]);
 
 const props = defineProps<User>()
+
+onMounted(async () => {
+  if (props.image && props.image.length > 0 && props.image[0]) {
+    // Берём только первую картинку
+    compressedImages.value = [
+      await compressImage(props.image[0], 300, 300)
+    ]
+  }
+});
+
+
 </script>
 
 <style>

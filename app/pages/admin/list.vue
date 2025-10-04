@@ -49,9 +49,10 @@
 import { onMounted } from 'vue'
 import { useCounterStore } from '#imports'
 import { storeToRefs } from 'pinia'
-
+import { compressImage } from '~/lib/imageCompressor'
 // --- 1. Store ---
 const store = useCounterStore()
+const compressedImages=ref<string[]>()
 const { data, reversedItems } = storeToRefs(store)
 
 // --- 2. Life Cycle / Initial Load ---
