@@ -36,8 +36,9 @@ const navItems = [
   { name: 'products', text: 'Продукты', icon: 'ph:bag', link:'/products' },
   { name: 'admin', text: 'Админ', icon: 'ph:gear-six', link:'/admin' },
   { name: 'cart', text: 'Корзина', icon: 'ph:shopping-cart', link:'/basket' },
-  // Добавленный элемент для поиска
-  { name: 'profile', text: 'Регистрация', icon: 'ph:user', link:'/profile' },
+   { name: 'profile', text: 'Профиль', icon: 'ph:user', link:'/profile' },
+ 
+ 
 ]
 </script>
 
