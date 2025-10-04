@@ -1,40 +1,56 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { type User } from '~/interfaces/user'
 
 interface Basket extends Omit<User, 'price'> {
   quantity: number
-  price: number // Теперь price будет только number, а не number | null
+  price: number // price теперь только number
 }
 
 export const useCounterStore = defineStore('host', () => {
-  const data = ref<User[]>([])  // сюда будем складывать items
+  const data = ref<User[]>([]) // все items
 
-const basket = ref<Basket[]>(JSON.parse(localStorage.getItem('basket') || '[]'))
-
-watch(basket, (val) => {
-  localStorage.setItem('basket', JSON.stringify(val))
-}, { deep: true })
-const basketCount = computed(() =>
-  basket.value.reduce((sum, item) => sum + item.quantity, 0)
-)
-
-
-
-const addToBasket = (item: User, quantity: number) => {
-  const existingItem = basket.value?.find((p) => p.id === item.id);
-
-  if (existingItem) {
-    // If the item exists, add the specified quantity
-    existingItem.quantity = (existingItem.quantity || 0) + quantity;
-    
-  } else {
-    //так как в items price опционален то здесь меняем на as number
-    basket.value?.push({ ...item, quantity, price: item.price as number });
+  // -----------------------------
+  // Безопасная инициализация basket
+  // -----------------------------
+  let initialBasket: Basket[] = []
+  try {
+    const raw = localStorage.getItem('basket')
+    if (raw) {
+      initialBasket = JSON.parse(raw)
+    }
+  } catch (e) {
+    console.warn('Invalid basket in localStorage, resetting...', e)
   }
-};
 
+  const basket = ref<Basket[]>(initialBasket)
 
+  // Сохраняем basket в localStorage
+  watch(
+    basket,
+    (val) => {
+      localStorage.setItem('basket', JSON.stringify(val))
+    },
+    { deep: true }
+  )
+
+  const basketCount = computed(() =>
+    basket.value.reduce((sum, item) => sum + item.quantity, 0)
+  )
+
+  const addToBasket = (item: User, quantity: number) => {
+    const existingItem = basket.value.find((p) => p.id === item.id)
+
+    if (existingItem) {
+      existingItem.quantity = (existingItem.quantity || 0) + quantity
+    } else {
+      basket.value.push({ ...item, quantity, price: item.price as number })
+    }
+  }
+
+  // -----------------------------
+  // API
+  // -----------------------------
   const fetchItems = async () => {
     data.value = await $fetch<User[]>('/api/items/get')
   }
@@ -48,7 +64,9 @@ const addToBasket = (item: User, quantity: number) => {
   }
 
   const deleteItem = async (id: string) => {
-    await $fetch(`/api/items/delete-one?id=${encodeURIComponent(id)}`, { method: 'POST' })
+    await $fetch(`/api/items/delete-one?id=${encodeURIComponent(id)}`, {
+      method: 'POST',
+    })
     await fetchItems()
   }
 
@@ -56,12 +74,27 @@ const addToBasket = (item: User, quantity: number) => {
     await $fetch('/api/items/delete', { method: 'DELETE' })
     await fetchItems()
   }
-const reversedItems = computed(() => [...data.value].reverse())
 
-const uniqueCategories=computed(()=>{
-  const allCategories=data.value.map(item=>item.category)
-  const filteredCategories=Array.from(new Set(allCategories))
-  return filteredCategories
-})
-  return { data, basket,basketCount, fetchItems, addItem, deleteItem, clearItems,reversedItems,addToBasket,uniqueCategories }
+  // -----------------------------
+  // computed
+  // -----------------------------
+  const reversedItems = computed(() => [...data.value].reverse())
+
+  const uniqueCategories = computed(() => {
+    const allCategories = data.value.map((item) => item.category)
+    return Array.from(new Set(allCategories))
+  })
+
+  return {
+    data,
+    basket,
+    basketCount,
+    fetchItems,
+    addItem,
+    deleteItem,
+    clearItems,
+    reversedItems,
+    addToBasket,
+    uniqueCategories,
+  }
 })

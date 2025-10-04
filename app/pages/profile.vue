@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+
 import { useSeoMeta, navigateTo } from '#app';
 
 useSeoMeta({
