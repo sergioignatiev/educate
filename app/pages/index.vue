@@ -66,9 +66,7 @@ const chosenCategories=ref([
   {id:3,label:'косметика',image:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29zbWV0aWN8ZW58MHx8MHx8fDA%3D'}
 ])
 
-const bestsellers=ref([
- {id:1,label:"",image:'',price:''}
-])
+
 
 onMounted(async () => {
   if (data.value.length === 0) {

@@ -1,59 +1,59 @@
 <template>
   <div class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md mt-8">
-    <h1 class="text-2xl font-bold mb-6 text-gray-800">Добавить товар</h1>
+    <h1 class="text-2xl font-bold mb-6 text-gray-800">
+      Добавить товар
+    </h1>
 
-    <form @submit.prevent="handleAddItem" class="space-y-4">
+    <form
+      class="space-y-4"
+      @submit.prevent="handleAddItem"
+    >
       
-      <!-- Продавец -->
       <div class="flex flex-col">
         <label class="font-semibold mb-1 text-gray-700">Продавец *</label>
         <input
           v-model="seller"
+          class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           type="text"
           placeholder="Продавец"
-          class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           required
         />
       </div>
 
-      <!-- Название -->
       <div class="flex flex-col">
         <label class="font-semibold mb-1 text-gray-700">Название *</label>
         <input
           v-model="title"
+          class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           type="text"
           placeholder="Название товара"
-          class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           required
         />
       </div>
 
-      <!-- Цена -->
       <div class="flex flex-col">
         <label class="font-semibold mb-1 text-gray-700">Цена *</label>
         <input
           v-model.number="price"
+          class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           type="number"
           min="0"
           placeholder="Цена"
-          class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           required
         />
       </div>
 
-      <!-- Описание -->
       <div class="flex flex-col">
         <label class="font-semibold mb-1 text-gray-700">Описание *</label>
         <textarea
           v-model="description"
-          placeholder="Описание товара"
           class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"
+          placeholder="Описание товара"
           rows="4"
           required
         ></textarea>
       </div>
 
-      <!-- Категория -->
       <div class="flex flex-col">
         <label class="font-semibold mb-1 text-gray-700">Категория *</label>
         <select
@@ -68,31 +68,33 @@
           <option value="обувь">Обувь</option>
           <option value="велосипеды">Велосипеды</option>
           <option value="косметика">Косметика</option>
-            <option value="медицина">Медицина</option>
-            <option value="книги">Книги</option>
+          <option value="медицина">Медицина</option>
+          <option value="книги">Книги</option>
         </select>
       </div>
 
-    <!-- Изображения -->
-<!-- Изображения -->
-<div class="flex flex-col sm:flex-row gap-2 w-full">
-  <input
-    v-model="oneImage"
-    type="text"
-    placeholder="URL изображения"
-    class="border border-gray-300 rounded-md px-3 py-2 flex-1 min-w-0 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-  />
-  <button
-    type="button"
-    @click="addImage"
-    class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition flex-shrink-0 w-full sm:w-auto"
-  >
-    Добавить
-  </button>
-</div>
+      <div class="flex flex-col sm:flex-row gap-2 w-full">
 
-      <!-- Список добавленных изображений -->
-      <div v-if="image.length" class="flex flex-wrap gap-2">
+        <input
+          v-model="oneImage"
+          class="border border-gray-300 rounded-md px-3 py-2 flex-1 min-w-0 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          type="text"
+          placeholder="Добавьте URL"
+        />
+       
+        <button
+          class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition flex-shrink-0 w-full sm:w-auto"
+          type="button"
+          @click="addImage"
+        >
+          Добавить Изображение
+        </button>
+      </div>
+ <p>ДОБАВЬТЕ URL одного или нескольких изображений. После каждого добавления нажмите на кнопку Добавить изображение </p>
+      <div
+        v-if="image.length"
+        class="flex flex-wrap gap-2"
+      >
         <span
           v-for="(img, index) in image"
           :key="index"
@@ -102,10 +104,9 @@
         </span>
       </div>
 
-      <!-- Кнопка добавления товара -->
       <button
-        type="submit"
         class="w-full bg-indigo-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-indigo-700 transition"
+        type="submit"
       >
         Добавить товар
       </button>
@@ -118,8 +119,10 @@ import { ref } from 'vue'
 import { nanoid } from 'nanoid'
 import { useCounterStore } from '#imports'
 
+// --- 1. Store ---
 const store = useCounterStore()
 
+// --- 2. State (Реактивные переменные) ---
 const title = ref('')
 const price = ref<number | null>(null)
 const description = ref('')
@@ -128,6 +131,12 @@ const image = ref<string[]>([])
 const oneImage = ref('')
 const seller = ref('')
 
+// --- 3. Life Cycle / Initial Load ---
+store.fetchItems()
+
+// --- 4. Functions ---
+
+// Добавление URL изображения в массив
 const addImage = () => {
   if (oneImage.value) {
     image.value.push(oneImage.value)
@@ -135,8 +144,7 @@ const addImage = () => {
   }
 }
 
-store.fetchItems()
-
+// Обработка отправки формы
 const handleAddItem = async () => {
   if (!title.value || !price.value || !description.value || !category.value || !seller.value) {
     alert('Пожалуйста, заполните все обязательные поля (*)')
@@ -156,6 +164,7 @@ const handleAddItem = async () => {
 
   alert(`${title.value} успешно добавлен!`)
 
+  // Очистка полей
   title.value = ''
   price.value = null
   description.value = ''

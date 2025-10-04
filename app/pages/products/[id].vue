@@ -1,15 +1,14 @@
 <template>
-  <TheWrapper class="pb-36 ">
-    <!-- 🔗 Навигация -->
-    <ProductIdLink class="py-8"/>
+  <TheWrapper class="pb-36">
+    <ProductIdLink class="py-8" />
 
-    <!-- 🛒 Карточка товара -->
-    <div v-if="item" class="bg-white rounded-lg shadow-lg">
+    <div
+      v-if="item"
+      class="bg-white rounded-lg shadow-lg"
+    >
       <div class="flex flex-col md:flex-row">
-        <!-- 🖼️ Левая колонка: изображения -->
-        <div class="p-6 md:p-8 lg:p-12 w-full md:w-1/2 md:sticky md:top-4 md:h-screen">
-          <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
-            <!-- 📌 Миниатюры -->
+        <div class="p-6 w-full md:w-1/2 md:sticky md:top-4 md:h-screen md:p-8 lg:p-12">
+          <div class="flex flex-col items-center gap-4 md:flex-row md:items-start">
             <ThumbnailId
               :images="compressedImages"
               :activeIndex="index"
@@ -17,23 +16,23 @@
               @hover="handleImageHover"
             />
 
-            <!-- 🖼️ Основное изображение -->
-            <div class="flex-1 order-1 md:order-2 flex items-center justify-center w-full">
+            <div class="order-1 flex w-full flex-1 items-center justify-center md:order-2">
               <img
                 v-if="compressedImages.length"
                 :src="mainImages[index]"
                 :alt="item.title"
-                class="w-full h-auto max-h-[70vh] rounded-md object-contain"
+                class="h-auto w-full max-h-[70vh] rounded-md object-contain"
               />
             </div>
           </div>
         </div>
 
-        <!-- 📄 Правая колонка: информация -->
-        <div class="p-6 md:p-8 lg:p-12 w-full md:w-1/2 flex flex-col justify-between">
-          <ProductIdInfo :item="item" :quantity-in-basket="quantityInBasket" />
+        <div class="flex w-full flex-col justify-between p-6 md:w-1/2 md:p-8 lg:p-12">
+          <ProductIdInfo
+            :item="item"
+            :quantity-in-basket="quantityInBasket"
+          />
 
-          <!-- ➕ Добавление в корзину -->
           <ProductIdBasketCounter
             v-model:count="totalInBasket"
             @add-to-basket="addToBasketAndReset"
@@ -42,8 +41,12 @@
       </div>
     </div>
 
-    <!-- ⏳ Лоадер -->
-    <p v-else class="mt-10 text-center text-xl text-gray-600">Загрузка...</p>
+    <p
+      v-else
+      class="mt-10 text-center text-xl text-gray-600"
+    >
+      Загрузка...
+    </p>
   </TheWrapper>
 </template>
 
@@ -58,10 +61,13 @@ import { useRoute } from 'vue-router';
 import { useCounterStore } from '../../stores/host';
 import { storeToRefs } from 'pinia';
 import { type User } from '~/interfaces/user';
+import { navigateTo } from '#app';
 
+// --- 1. Store ---
 const store = useCounterStore();
 const { data, basket } = storeToRefs(store);
 
+// --- 2. State & Computed ---
 const route = useRoute();
 const id = computed(() => route.params.id as string);
 const item = computed(() => data.value.find((i: User) => i.id === id.value));
@@ -70,7 +76,10 @@ const quantityInBasket = computed(() => basket.value?.find((q: User) => q.id ===
 const index = ref(0);
 const totalInBasket = ref(1);
 const compressedImages = ref<string[]>([]);
-const mainImages=ref<string[]>([])
+const mainImages = ref<string[]>([]);
+
+// --- 3. Functions ---
+
 function handleImageHover(x: number) {
   index.value = x;
 }
@@ -82,22 +91,29 @@ const addToBasketAndReset = () => {
   }
 };
 
-// Сжатие изображения в браузере
+// --- 4. Life Cycle ---
 
+// Сжатие изображения в браузере
 onMounted(async () => {
+  // [УЛУЧШЕНИЕ] Логику проверки наличия данных и fetchItems лучше вынести в middleware или useAsyncData
+  // для корректного SSR и предотвращения двойной загрузки.
   if (data.value.length === 0) {
     await store.fetchItems();
   }
 
-    if (!item.value) {
+  // [УЛУЧШЕНИЕ] Обработка ошибки "Не найден" в onMounted происходит на стороне клиента.
+  // Это может привести к неверному рендерингу на SSR.
+  // Лучше использовать useAsyncData для перехвата 404 на сервере.
+  if (!item.value) {
     navigateTo('/products/notfound', { replace: true })
     return
   }
+  
   if (item.value) {
     compressedImages.value = await Promise.all(
       item.value.image.map((img) => compressImage(img, 160, 160))
     );
-    mainImages.value=await Promise.all(
+    mainImages.value = await Promise.all(
       item.value.image.map((img) => compressImage(img, 600, 600))
     );
   }

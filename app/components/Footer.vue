@@ -5,7 +5,7 @@
       <div class="py-16 flex lg:flex-row flex-col justify-between gap-10 border-b border-gray-300">
 
         <div class="block lg:w-1/3 ">
-          <NuxtImg class="w-12 h-auto" src="/favicon.ico" alt="logo"/>
+          <NuxtImg class="w-24 h-auto" src="/images/footerlogo.webp" alt="logo"/>
           <div class="text-sm font-semibold pt-6 space-y-3 text-blue-900">
             <p>
               Данный магазин создан Игнатьевым Сергеем исключительно для учебных целей. Не предназначен для коммерческого использования. 
