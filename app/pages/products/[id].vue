@@ -88,6 +88,11 @@ onMounted(async () => {
   if (data.value.length === 0) {
     await store.fetchItems();
   }
+
+    if (!item.value) {
+    navigateTo('/products/notfound', { replace: true })
+    return
+  }
   if (item.value) {
     compressedImages.value = await Promise.all(
       item.value.image.map((img) => compressImage(img, 160, 160))
