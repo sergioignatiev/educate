@@ -24,14 +24,11 @@
   </div>
 </template>
 
-<script lang="ts">
-// ✅ Глобальный для этого модуля кэш
-export const imageCache = new Map<string, string>();
-</script>
+
 
 <script lang="ts" setup>
 import { type User } from '@/interfaces/user'
-import { compressImage } from '~/lib/imageCompressor';
+import { compressImage,imageCache } from '~/lib/imageCompressor';
 const compressedImages = ref<string[]>([]);
 
 const props = defineProps<User>()

@@ -26,3 +26,4 @@ export async function compressImage(fileOrUrl: string, maxWidth = 800, maxHeight
     img.src = fileOrUrl;
   });
 }
+export const imageCache = new Map<string, string>();
