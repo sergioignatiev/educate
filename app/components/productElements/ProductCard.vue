@@ -1,5 +1,5 @@
 <template>
-  <div class="sm:w-[200px] h-[350px] p-4 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between h-full">
+  <div class="sm:w-[200px] h-[350px] p-4 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between ">
     <nuxt-link :to="`/products/${id}`"
       class="w-full flex flex-col items-start mb-2 flex-grow">
       <div class="w-full h-[200px] flex items-center justify-center mb-2 overflow-hidden">
@@ -24,6 +24,11 @@
   </div>
 </template>
 
+<script lang="ts">
+// ✅ Глобальный для этого модуля кэш
+export const imageCache = new Map<string, string>();
+</script>
+
 <script lang="ts" setup>
 import { type User } from '@/interfaces/user'
 import { compressImage } from '~/lib/imageCompressor';
@@ -32,17 +37,16 @@ const compressedImages = ref<string[]>([]);
 const props = defineProps<User>()
 
 onMounted(async () => {
-  if (props.image && props.image.length > 0 && props.image[0]) {
-    // Берём только первую картинку
-    compressedImages.value = [
-      await compressImage(props.image[0], 300, 300)
-    ]
+  const img = props.image?.[0];
+  if (!img) return;
+
+  if (imageCache.has(img)) {
+    compressedImages.value = [imageCache.get(img)!];
+  } else {
+    const compressed = await compressImage(img, 300, 300);
+    imageCache.set(img, compressed);
+    compressedImages.value = [compressed];
   }
 });
-
-
 </script>
 
-<style>
-/* UnoCSS works without a style block */
-</style>
