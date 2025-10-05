@@ -8,11 +8,12 @@
         class="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-white shadow rounded-lg p-4 mb-3"
       >
         <!-- Картинка -->
-        <img
-          :src="b.image?.[0]"
-          :alt="b.title"
-          class="w-full sm:w-20 h-40 sm:h-20 object-cover rounded-md flex-shrink-0"
-        />
+       <TheImage
+       v-bind="b"
+      :width="200"
+      :height="200"
+      css="w-30 sm:w-20 h-40 sm:h-20 object-cover rounded-md flex-shrink-0"
+       />
 
         <!-- Информация -->
         <div class="flex-1 w-full">
