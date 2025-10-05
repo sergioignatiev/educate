@@ -13,13 +13,13 @@
         :key="item.id"
         class="bg-white shadow rounded-lg p-4 flex flex-col sm:flex-row items-start sm:items-center gap-4"
       >
-        <img
-          :src="item.image[0]"
-          :alt="item.title"
-          class="w-full sm:w-20 h-40 sm:h-20 object-cover rounded-md flex-shrink-0"
-          loading="lazy"
-        />
-
+      
+        <the-image v-bind="item"
+         css="h-[40px]" 
+          :width="140" 
+          :height="140" 
+          
+          />
         <div class="flex-1 w-full">
           <h2 class="font-semibold text-lg text-gray-800">
             {{ item.title }}
@@ -60,6 +60,7 @@ onMounted(async () => {
   if (data.value.length === 0) {
     await store.fetchItems()
   }
+
 })
 
 // --- 3. Functions ---

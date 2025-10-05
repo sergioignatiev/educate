@@ -70,7 +70,7 @@
                 @mousedown.prevent="selectItem(index)"
               >
                 <NuxtLink class="flex gap-4 items-center" :to="`/products/${item.id}`">
-                  <img class="h-[30px] w-[30px]" :src="item.image[0]" alt="IMG">
+                  <TheImage v-bind:="item" css="w-[50px] h-[50px]" :width="140" :height="140" />
                   <p>{{ item.title }}</p>
 
                   </NuxtLink>
