@@ -30,13 +30,16 @@
         <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Бестселлеры</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           
-          <nuxt-link :to="`/products/${item.id}`" v-for="item in data.slice(0,4)" :key="item.id" class="bg-white p-4 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <img :src="item.image" :alt="item.title" class="w-full h-64 object-cover rounded-md mb-4">
+        <!--  <nuxt-link :to="`/products/${item.id}`" v-for="item in data.slice(0,4)" :key="item.id" class="bg-white p-4 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300 cursor-pointer">
+            <img :src="item.image[0]" :alt="item.title" class="w-full h-64 object-cover rounded-md mb-4">
             <h3 class="text-lg font-semibold truncate capitalize">{{ item.title }}</h3>
             <p class="text-gray-500 truncate">{{ item.category }}</p>
             <p class="text-xl font-bold text-indigo-600 mt-2">${{ item.price }}</p>
-          </nuxt-link>
-
+          </nuxt-link>-->
+<the-bestsellers
+v-for="item in data.slice(0,4)" :key="item.id"
+v-bind="item"
+/>
        
           
         
@@ -55,15 +58,16 @@
 import { useCounterStore } from '#imports'
 import { storeToRefs } from 'pinia'
 import IndexSwiper from '~/components/index/IndexSwiper.vue'
+import TheBestsellers from '~/components/index/TheBestsellers.vue'
 const store = useCounterStore()
 const { data } = storeToRefs(store) 
 
 const chosenCategories=ref([
   {
-    id:1,label:"электроника",image:'/images/electronics.avif'
+    id:1,label:"электроника",image:'/images/electronics2.jpg'
   },
-  {id:2,label:"одежда",image:'/images/clothes.avif'},
-  {id:3,label:'косметика',image:'/images/cosmetics.avif'}
+  {id:2,label:"одежда",image:'/images/clothes2.jpg'},
+  {id:3,label:'косметика',image:'/images/cosmetics2.jpg'}
 ])
 
 
