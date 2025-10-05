@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay, Navigation, Pagination,EffectFade } from 'swiper/modules'
+import TheVideo from './TheVideo.vue'
 const videos = [
   {id:1,src:'/video/clothes.mp4',label:"Одежда"},
    {id:2,src:'/video/electronics.mp4',label:"Электроника"},
