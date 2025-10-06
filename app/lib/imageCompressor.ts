@@ -1,9 +1,10 @@
-export async function compressImage(fileOrUrl: string, maxWidth = 800, maxHeight = 800) {
+export async function compressImage(fileOrUrl: string, maxWidth = 800, maxHeight = 801) {
   return new Promise<string>((resolve, reject) => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onload = () => {
       let { width, height } = img;
+      
       if (width > maxWidth) {
         height = (maxWidth / width) * height;
         width = maxWidth;

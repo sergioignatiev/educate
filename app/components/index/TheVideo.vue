@@ -19,6 +19,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-const props = defineProps<{ video: { src: string, label: string } }>();
+defineProps<{ video: { src: string, label: string } }>();
 
 </script>
