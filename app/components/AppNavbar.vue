@@ -4,16 +4,16 @@
     <div class="max-w-7xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between xl:space-x-6 space-x-4">
 
       <NuxtLink to="/" class="flex-shrink-0">
-        <img 
+        <NuxtImg
           src="/images/logoappnavbar.png" 
           alt="Bald-e Logo" 
           class="h-9 w-auto hidden xl:block"
-        >
-        <img 
+        />
+        <NuxtImg 
           src="/favicon.ico" 
           alt="Bald-e Icon" 
           class="h-9 w-9 xl:hidden"
-        >
+        />
       </NuxtLink>
       
       <div class="flex items-center xl:space-x-8 space-x-4 flex-grow">

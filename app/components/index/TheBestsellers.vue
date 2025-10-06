@@ -1,6 +1,10 @@
 <template>
  <nuxt-link :to="`/products/${id}`"  class="bg-white p-4 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <img :src="compressedImages[0]" :alt="title" class="w-full h-64 object-cover rounded-md mb-4">
+            <NuxtImg 
+            class="w-full h-64 object-cover rounded-md mb-4" 
+            :src="compressedImages[0]" :alt="title" 
+            loading="lazy"
+            />
             <h3 class="text-lg font-semibold truncate capitalize">{{ title }}</h3>
           
             <p class="text-gray-500 truncate">{{ category }}</p>

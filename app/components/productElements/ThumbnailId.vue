@@ -6,7 +6,7 @@
       @mouseover="$emit('hover', id)"
       class="cursor-pointer"
     >
-      <img
+      <NuxtImg
         width="60"
         height="60"
         class="h-[60px] w-[60px] rounded-md object-cover transition-all duration-300 border-slate-700"

@@ -17,7 +17,7 @@
             />
 
             <div class="order-1 flex w-full flex-1 items-center justify-center md:order-2">
-              <img
+              <NuxtImg
                 v-if="compressedImages.length"
                 :src="mainImages[index]"
                 :alt="item.title"
@@ -118,4 +118,11 @@ onMounted(async () => {
     );
   }
 });
+useSeoMeta({
+   title: computed(() => `BALD-E | ${item.value?.title || 'Загрузка...'} `),
+  
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+ 
+})
 </script>

@@ -1,6 +1,6 @@
 <template>
  
-    <img
+    <NuxtImg
 :class="`${css}`"
     
     v-if="compressedImage" :src="compressedImage" :alt="title" />

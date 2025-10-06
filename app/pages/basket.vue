@@ -82,5 +82,11 @@ const decrement = (item: any) => {
     basket.value = basket.value.filter(i => i.id !== item.id)
   }
 }
+useSeoMeta({
+  title:"BALD-E | Корзина",
 
+  description: 'Корзина с выбранными товарами.',
+  ogDescription: 'Корзина с выбранными товарами.',
+ 
+})
 </script>
