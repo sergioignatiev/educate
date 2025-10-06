@@ -12,7 +12,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
           <nuxt-link :to="{ path: '/products', query: { category: item.label } }" v-for="item in chosenCategories" class="relative overflow-hidden rounded-xl shadow-lg group" :key="item.id">
-            <img :src="item.image" :alt="item.label" class="w-full h-80 object-cover transform transition-transform duration-500 group-hover:scale-110">
+ <picture>
+    <source :srcset="item.image + '.avif'" type="image/avif" />
+    <img :src="item.image + '.jpg'" :alt="item.label" class="w-full h-80 object-cover transform transition-transform duration-500 group-hover:scale-110" />
+  </picture>
             <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-100 transition-opacity duration-300">
               <span class="text-white text-2xl font-semibold tracking-wide capitalize">{{ item.label }}</span>
             </div>
@@ -30,12 +33,7 @@
         <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Бестселлеры</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           
-        <!--  <nuxt-link :to="`/products/${item.id}`" v-for="item in data.slice(0,4)" :key="item.id" class="bg-white p-4 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <img :src="item.image[0]" :alt="item.title" class="w-full h-64 object-cover rounded-md mb-4">
-            <h3 class="text-lg font-semibold truncate capitalize">{{ item.title }}</h3>
-            <p class="text-gray-500 truncate">{{ item.category }}</p>
-            <p class="text-xl font-bold text-indigo-600 mt-2">${{ item.price }}</p>
-          </nuxt-link>-->
+       
 <the-bestsellers
 v-for="item in data.slice(0,4)" :key="item.id"
 v-bind="item"
@@ -64,10 +62,10 @@ const { data } = storeToRefs(store)
 
 const chosenCategories=ref([
   {
-    id:1,label:"электроника",image:'/images/electronics2.jpg'
+    id:1,label:"электроника",image:'/images/electronics'
   },
-  {id:2,label:"одежда",image:'/images/clothes2.jpg'},
-  {id:3,label:'косметика',image:'/images/cosmetics2.jpg'}
+  {id:2,label:"одежда",image:'/images/clothes'},
+  {id:3,label:'косметика',image:'/images/cosmetics'}
 ])
 
 

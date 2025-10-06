@@ -4,7 +4,7 @@
 :class="`${css}`"
     
     v-if="compressedImage" :src="compressedImage" :alt="title" />
- 
+ <div class="" v-else>Заргузка</div>
 </template>
 
 <script lang="ts" setup>
