@@ -5,7 +5,7 @@ import TheVideo from './TheVideo.vue'
 const videos = [
   {id:1,src:'/video/clothes.mp4',label:"Одежда"},
    {id:2,src:'/video/electronics.mp4',label:"Электроника"},
-   {id:3,src:'/video/cosmetic.mp4',label:"Косметика"}
+   {id:3,src:'/video/cosmetics.mp4',label:"Косметика"}
 ]
 </script>
 
