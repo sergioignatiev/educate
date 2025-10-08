@@ -70,6 +70,7 @@
           <option value="косметика">Косметика</option>
           <option value="медицина">Медицина</option>
           <option value="книги">Книги</option>
+          <option value="спорт">Спорт </option>
         </select>
       </div>
 
