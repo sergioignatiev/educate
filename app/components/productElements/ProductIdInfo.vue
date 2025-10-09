@@ -29,7 +29,8 @@
     <!-- 📝 Описание -->
     <div class="border-t border-gray-200 pt-6 mt-6">
       <h3 class="text-base sm:text-lg font-bold text-gray-800 mb-2">Об этом товаре</h3>
-      <p class="text-sm sm:text-base text-gray-600 leading-relaxed">{{ item.description }}</p>
+      <p class="text-sm sm:text-base text-gray-600 leading-relaxed" >{{ item.description }}</p>
+      
     </div>
   </div>
 </template>
@@ -37,10 +38,12 @@
 <script lang="ts" setup>
 import TheStars from './TheStars.vue'
 import { type User } from '~/interfaces/user'
-defineProps<{
+const props = defineProps<{
   item: User
   quantityInBasket?: { quantity: number } | null
 }>()
+
+const splittedDescription=props.item.description.split(';')
 
 defineEmits<{
   (e: 'some-event'): void
