@@ -32,7 +32,7 @@
       </div>
 
       <div class="flex flex-col">
-        <label class="font-semibold mb-1 text-gray-700">Цена *</label>
+        <label class="font-semibold mb-1 text-gray-700">Цена * не больше 999</label>
         <input
           v-model.number="price"
           class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
