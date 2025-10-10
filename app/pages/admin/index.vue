@@ -38,6 +38,7 @@
           class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           type="number"
           min="0"
+          max="999"
           placeholder="Цена"
           required
         />
