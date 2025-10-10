@@ -30,7 +30,7 @@
   ></div>
 
         <product-card
-          v-for="item in data"
+          v-for="item in filtered"
           :key="item.id"
           v-bind="item"
         
