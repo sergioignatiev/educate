@@ -29,7 +29,9 @@
     <!-- 📝 Описание -->
     <div class="border-t border-gray-200 pt-6 mt-6">
       <h3 class="text-base sm:text-lg font-bold text-gray-800 mb-2">Об этом товаре</h3>
-      <p class="text-sm sm:text-base text-gray-600 leading-relaxed" >{{ item.description }}</p>
+      <ul class=" list-disc text-sm sm:text-base text-gray-600 leading-relaxed">
+      <li class="p-1 "  v-for="(description,index) in splittedDescription" :key="index">{{ description }}</li>
+      </ul>
       
     </div>
   </div>
@@ -43,7 +45,7 @@ const props = defineProps<{
   quantityInBasket?: { quantity: number } | null
 }>()
 
-const splittedDescription=props.item.description.split(';')
+const splittedDescription=props.item.description.split('\n').filter(item=>item.trim().length>0)
 
 defineEmits<{
   (e: 'some-event'): void
