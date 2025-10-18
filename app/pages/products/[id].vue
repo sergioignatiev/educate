@@ -121,8 +121,8 @@ onMounted(async () => {
 useSeoMeta({
    title: computed(() => `BALD-E | ${item.value?.title || 'Загрузка...'} `),
   
-  description: 'This is my amazing site, let me tell you all about it.',
-  ogDescription: 'This is my amazing site, let me tell you all about it.',
+  description:computed(() => `BALD-E | ${item.value?.title || 'Загрузка товара'} `) ,
+  ogDescription:computed(() => `BALD-E | ${item.value?.title || 'Загрузка товара'} `) ,
  
 })
 </script>
