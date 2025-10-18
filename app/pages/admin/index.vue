@@ -63,15 +63,7 @@
           required
         >
           <option value="" disabled selected>-- Выберите категорию --</option>
-          <option value="одежда">Одежда</option>
-          <option value="электроника">Электроника</option>
-          <option value="картины">Картины</option>
-          <option value="обувь">Обувь</option>
-          <option value="велосипеды">Велосипеды</option>
-          <option value="косметика">Косметика</option>
-          <option value="медицина">Медицина</option>
-          <option value="книги">Книги</option>
-          <option value="спорт">Спорт </option>
+         <option v-for="(category,index) in categories" :value="category.value" :key="index">{{ category.label }}</option>
         </select>
       </div>
 
@@ -120,6 +112,19 @@
 import { ref } from 'vue'
 import { nanoid } from 'nanoid'
 import { useCounterStore } from '#imports'
+
+const categories = [
+  { value: 'одежда', label: 'Одежда' },
+  { value: 'электроника', label: 'Электроника' },
+  { value: 'картины', label: 'Картины' },
+  { value: 'обувь', label: 'Обувь' },
+  { value: 'велосипеды', label: 'Велосипеды' },
+  { value: 'косметика', label: 'Косметика' },
+  { value: 'медицина', label: 'Медицина' },
+  { value: 'книги', label: 'Книги' },
+  { value: 'спорт', label: 'Спорт' },
+  { value: 'старшие смены', label: 'Старшие смены' }
+];
 
 // --- 1. Store ---
 const store = useCounterStore()
